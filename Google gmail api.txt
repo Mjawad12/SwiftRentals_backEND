@@ -1,9 +1,0 @@
-			
-
-	Authorized redirect URIs : https://developers.google.com/oauthplayground
-
-	Client ID : 49583899081-tru7blmp415s5qfurhem908ipc0iih4g.apps.googleusercontent.com
-	
-	Client secret : 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
-
-	Refresh token:1//04vZhV1aRRj1KCgYIARAAGAQSNwF-L9IrZov4b5ijNqtjRByknKn4rZbs-sd5zDyBFsX79slBKtinJr98igXy5V9BeuCvrncPcGs
