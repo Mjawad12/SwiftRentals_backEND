@@ -5,7 +5,13 @@ require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 
 function Otpcreator() {
   const Client_ID = process.env.Client_string;
+  const Client_SECRET = process.env.Client_secret_string;
+  const Redirect_URI = process.env.Redirect_string;
+  const Refresh_TOKEN = process.env.Refresh_string_token;
   console.log(Client_ID);
+  console.log(Client_SECRET);
+  console.log(Redirect_URI);
+  console.log(Refresh_TOKEN);
   let r = Math.random();
   r = Math.round(r * 1000 + 1000);
   return r;
