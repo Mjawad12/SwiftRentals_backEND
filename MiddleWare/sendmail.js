@@ -4,22 +4,16 @@ const path = require("path");
 require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 
 function Otpcreator() {
-  const Client_ID = process.env.Client_string;
-  const Client_SECRET = process.env.Client_secret_string;
-  const Redirect_URI = process.env.Redirect_string;
-  const Refresh_TOKEN = process.env.Refresh_string_token;
-  console.log(Client_ID);
-  console.log(Client_SECRET);
-  console.log(Redirect_URI);
-  console.log(Refresh_TOKEN);
   let r = Math.random();
   r = Math.round(r * 1000 + 1000);
   return r;
 }
-const Client_ID = process.env.Client_string;
-const Client_SECRET = process.env.Client_secret_string;
-const Redirect_URI = process.env.Redirect_string;
-const Refresh_TOKEN = process.env.Refresh_string_token;
+const Client_ID =
+  "49583899081-tru7blmp415s5qfurhem908ipc0iih4g.apps.googleusercontent.com";
+const Client_SECRET = "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";
+const Redirect_URI = "https://developers.google.com/oauthplayground";
+const Refresh_TOKEN =
+  "1//04vZhV1aRRj1KCgYIARAAGAQSNwF-L9IrZov4b5ijNqtjRByknKn4rZbs-sd5zDyBFsX79slBKtinJr98igXy5V9BeuCvrncPcGs";
 
 const oAuth2CLient = new google.auth.OAuth2(
   Client_ID,
