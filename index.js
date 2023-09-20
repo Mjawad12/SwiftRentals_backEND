@@ -9,7 +9,11 @@ const user = require("./Routes/Users");
 
 const ConnectTodb = async () => {
   try {
-    mongoose.connect(process.env.Connection_string);
+    mongoose.connect(process.env.Connection_string, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      serverSelectionTimeoutMS: 30000, // Increase timeout to 30 seconds
+    });
     console.log("Connected");
   } catch (error) {
     console.log("Can not connect to db" + error.message);
