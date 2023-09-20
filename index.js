@@ -5,7 +5,7 @@ const path = require("path");
 require("dotenv").config({ path: path.resolve(__dirname, "./.env") });
 var cors = require("cors");
 const reservation = require("./Routes/reservation");
-const Port = 5000;
+
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -18,7 +18,7 @@ app.use("/api/reserv", reservation);
 db.connect(process.env.Connection_string)
   .then(() => {
     console.log("Connected to Db");
-    app.listen(process.env.PORT || Port, () => {
+    app.listen(process.env.PORT || 3000, () => {
       console.log("app launched on port 5500");
     });
   })
