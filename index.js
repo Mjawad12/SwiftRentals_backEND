@@ -25,5 +25,5 @@ db.connect(
     });
   })
   .catch((error) => {
-    console.log("Can not Connecy to Db" + error);
+    console.log("Can not Connecy to Db" + error.message);
   });
