@@ -15,7 +15,9 @@ app.get("/", (req, res) => {
 app.use("/api/", user);
 app.use("/api/reserv", reservation);
 
-db.connect(process.env.Connection_string)
+db.connect(
+  "mongodb+srv://SwiftRentals_Main:RentalSwift156jaw@swiftrentals.pm3mdfi.mongodb.net/SwiftRentals"
+)
   .then(() => {
     console.log("Connected to Db");
     app.listen(process.env.PORT || 3000, () => {
