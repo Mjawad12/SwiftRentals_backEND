@@ -16,7 +16,7 @@ app.use("/api/", user);
 app.use("/api/reserv", reservation);
 
 db.connect(
-  "mongodb+srv://SwiftRentals_Main:RentalSwift156jaw@swiftrentals.pm3mdfi.mongodb.net/SwiftRentals"
+  "mongodb+srv://SwiftRentals_Main:RentalSwift156jaw@swiftrentals.pm3mdfi.mongodb.net/"
 )
   .then(() => {
     console.log("Connected to Db");
