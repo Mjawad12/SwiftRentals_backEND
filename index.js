@@ -15,17 +15,13 @@ app.get("/", (req, res) => {
 app.use("/api/", user);
 app.use("/api/reserv", reservation);
 
-const connectToDb = () => {
-  db.connect(process.env.Connection_string)
-    .then(() => {
-      console.log("Connected to Db");
-      app.listen(process.env.PORT || Port, () => {
-        console.log("app launched on port 5500");
-      });
-    })
-    .catch((error) => {
-      console.log("Can not Connecy to Db" + error);
+db.connect(process.env.Connection_string)
+  .then(() => {
+    console.log("Connected to Db");
+    app.listen(process.env.PORT || Port, () => {
+      console.log("app launched on port 5500");
     });
-};
-
-connectToDb();
+  })
+  .catch((error) => {
+    console.log("Can not Connecy to Db" + error);
+  });
