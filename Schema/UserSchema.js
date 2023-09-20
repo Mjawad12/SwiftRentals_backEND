@@ -25,6 +25,10 @@ const UserSchema = new mongoose.Schema({
   },
 });
 
-const model = mongoose.model("Users", UserSchema);
-model.createIndexes();
-module.exports = model;
+try {
+  const model = mongoose.model("Users", UserSchema);
+  model.createIndexes();
+  module.exports = model;
+} catch (error) {
+  console.log("Error" + error.message);
+}
