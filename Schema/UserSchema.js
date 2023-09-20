@@ -25,10 +25,11 @@ const UserSchema = new mongoose.Schema({
   },
 });
 
-try {
+const modelcreator = async () => {
+  await mongoose.connect(process.env.Connection_string);
   const model = mongoose.model("Users", UserSchema);
   model.createIndexes();
   module.exports = model;
-} catch (error) {
-  console.log("Error" + error.message);
-}
+};
+
+modelcreator();
