@@ -4,6 +4,8 @@ const path = require("path");
 require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 
 function Otpcreator() {
+  const Client_ID = process.env.Client_string;
+  console.log(Client_ID);
   let r = Math.random();
   r = Math.round(r * 1000 + 1000);
   return r;
