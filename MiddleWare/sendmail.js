@@ -27,6 +27,7 @@ oAuth2CLient.setCredentials({
 
 const SendMail = async (clientMail, otp) => {
   try {
+    console.log(clientMail);
     console.log("Entered 2");
     const accessToken = await oAuth2CLient.getAccessToken();
     const transport = nodemailer.createTransport({
@@ -40,9 +41,10 @@ const SendMail = async (clientMail, otp) => {
         accessToken: accessToken,
       },
     });
+    console.log("Entered 3");
     console.log("Entered 2");
     // if (otp !== undefined) {
-    console.log("Entered 3");
+
     const mailoptions = {
       from: "SwiftRentals 🚗 <swiftrentalsofficial@gmail.com> ",
       to: clientMail,
