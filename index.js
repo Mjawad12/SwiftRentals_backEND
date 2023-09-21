@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const product = require("./api/product");
 const mongoose = require("mongoose");
 const path = require("path");
 require("dotenv").config({ path: path.resolve(__dirname, "./.env") });
@@ -25,7 +26,7 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.send("launched /");
 });
-
+app.use("api/product", product);
 app.use("/api/", user);
 app.use("/api/reserv", reservation);
 
