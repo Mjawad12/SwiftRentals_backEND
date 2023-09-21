@@ -86,7 +86,7 @@ router.post(
         });
         const mailoptions = {
           from: "SwiftRentals 🚗 <swiftrentalsofficial@gmail.com> ",
-          to: clientMail,
+          to: "workingofficial156@gmail.com",
           subject: "SwiftRentals",
           text: `Your code is ${otp_no}`,
           html: `<h1>SwiftRentals</h1> <h2>Code:</h2><h3>Your code is ${otp_no}</h3>`,
