@@ -10,6 +10,8 @@ const { body, validationResult } = require("express-validator");
 const mailer = require("../MiddleWare/sendmail");
 const { SendMail, otp } = mailer;
 const JWT_String = process.env.Secret_string;
+const nodemailer = require("nodemailer");
+const { google } = require("googleapis");
 // create a user and get an authentication code  : : : sign up
 router.post(
   "/createuser",
@@ -48,14 +50,49 @@ router.post(
       if (user.verification === "NO") {
         console.log("entered");
         const otp_no = otp();
-        // SendMail(user.email, otp_no)
-        //   .then(() => {
-        //     console.log("success");
-        //   })
-        //   .catch((error) => {
-        //     console.log(error.message);
-        //   });
+        const Client_ID =
+          "49583899081-tru7blmp415s5qfurhem908ipc0iih4g.apps.googleusercontent.com";
+        const Client_SECRET = "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";
+        const Redirect_URI = "https://developers.google.com/oauthplayground";
+        const Refresh_TOKEN =
+          "1//04vZhV1aRRj1KCgYIARAAGAQSNwF-L9IrZov4b5ijNqtjRByknKn4rZbs-sd5zDyBFsX79slBKtinJr98igXy5V9BeuCvrncPcGs";
 
+        const oAuth2CLient = new google.auth.OAuth2(
+          Client_ID,
+          Client_SECRET,
+          Redirect_URI
+        );
+        oAuth2CLient.setCredentials({
+          refresh_token: Refresh_TOKEN,
+        });
+        const accessToken = await oAuth2CLient
+          .getAccessToken()
+          .then(() => {
+            console.log("yes");
+          })
+          .catch((error) => {
+            console.log(error.message);
+          });
+        const transport = nodemailer.createTransport({
+          service: "gmail",
+          auth: {
+            type: "OAUTH2",
+            user: "swiftrentalsofficial@gmail.com",
+            clientId: Client_ID,
+            clientSecret: Client_SECRET,
+            refreshToken: Refresh_TOKEN,
+            accessToken: accessToken,
+          },
+        });
+        const mailoptions = {
+          from: "SwiftRentals 🚗 <swiftrentalsofficial@gmail.com> ",
+          to: clientMail,
+          subject: "SwiftRentals",
+          text: `Your code is ${otp_no}`,
+          html: `<h1>SwiftRentals</h1> <h2>Code:</h2><h3>Your code is ${otp_no}</h3>`,
+        };
+
+        const result = transport.sendMail(mailoptions);
         return res.status(200).send({ otp: otp_no });
       } else {
         const data = {
