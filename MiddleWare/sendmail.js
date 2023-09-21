@@ -29,7 +29,6 @@ const SendMail = async (clientMail, otp) => {
   try {
     console.log(clientMail);
     console.log("Entered 2");
-
     const accessToken = await oAuth2CLient
       .getAccessToken()
       .then(() => {
@@ -87,7 +86,7 @@ const SendMail = async (clientMail, otp) => {
     //   const result = await transport.sendMail(mailoptions);
     // }
   } catch (error) {
-    return "Enter a valid Email", error;
+    console.log("Enter a valid Email", error.message);
   }
 };
 
