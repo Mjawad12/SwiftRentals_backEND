@@ -28,7 +28,6 @@ oAuth2CLient.setCredentials({
 const SendMail = async (clientMail, otp) => {
   try {
     console.log(clientMail);
-
     const accessToken = await oAuth2CLient
       .getAccessToken()
       .then(() => {
