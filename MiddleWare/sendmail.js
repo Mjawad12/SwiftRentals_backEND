@@ -28,7 +28,7 @@ oAuth2CLient.setCredentials({
 const SendMail = async (clientMail, otp) => {
   try {
     console.log(clientMail);
-    console.log("Entered 2");
+
     const accessToken = await oAuth2CLient
       .getAccessToken()
       .then(() => {
@@ -49,42 +49,33 @@ const SendMail = async (clientMail, otp) => {
       },
     });
 
-    // if (otp !== undefined) {
+    if (otp !== undefined) {
+      const mailoptions = {
+        from: "SwiftRentals 🚗 <swiftrentalsofficial@gmail.com> ",
+        to: clientMail,
+        subject: "SwiftRentals",
+        text: `Your code is ${otp}`,
+        html: `<h1>SwiftRentals</h1> <h2>Code:</h2><h3>Your code is ${otp}</h3>`,
+      };
 
-    const mailoptions = {
-      from: "SwiftRentals 🚗 <swiftrentalsofficial@gmail.com> ",
-      to: clientMail,
-      subject: "SwiftRentals",
-      text: `Your code is ${otp}`,
-      html: `<h1>SwiftRentals</h1> <h2>Code:</h2><h3>Your code is ${otp}</h3>`,
-    };
-    await new Promise(() => {
-      transport.sendMail(mailoptions, (err, info) => {
-        if (err) {
-          console.log(err);
-          rejects(err);
-        } else {
-          resolve(info);
-        }
-      });
-    });
-    // } else {
-    //   console.log("Entered 4");
-    //   const mailoptions = {
-    //     from: "SwiftRentals 🚗 <swiftrentalsofficial@gmail.com> ",
-    //     to: clientMail,
-    //     subject: "SwiftRentals - Thank You for Your Reservation Request",
-    //     text: `Your Reservation Has bee`,
-    //     html: `<h1>SwiftRentals</h1><br>
-    //       <p>I hope this message finds you <b> well</b>. I wanted to express my sincere gratitude for your interest in SwiftRentals and for considering us for your car rental needs.</p>
-    //       <p>To clarify, SwiftRentals is primarily a platform designed for showcasing my portfolio as a web developer and designer. It is not a real car rental service. Your reservation request, while not applicable in this context, is genuinely appreciated as it allows me to demonstrate the user experience and functionality of the website.</p>
-    //       <p>Your interest means a lot to me, and I'm here to answer any questions you might have about the website, its features, or any other inquiries related to my portfolio .Please feel free to reach out with any queries, and I'll be more than happy to assist you.</p>
-    //       <h2>Best regards,</h2>
-    //       <h1>swiftrentalsofficial@gmail.com</h1>
-    //     `,
-    //   };
-    //   const result = await transport.sendMail(mailoptions);
-    // }
+      const result = transport.sendMail(mailoptions);
+    } else {
+      console.log("Entered 4");
+      const mailoptions = {
+        from: "SwiftRentals 🚗 <swiftrentalsofficial@gmail.com> ",
+        to: clientMail,
+        subject: "SwiftRentals - Thank You for Your Reservation Request",
+        text: `Your Reservation Has bee`,
+        html: `<h1>SwiftRentals</h1><br>
+          <p>I hope this message finds you <b> well</b>. I wanted to express my sincere gratitude for your interest in SwiftRentals and for considering us for your car rental needs.</p>
+          <p>To clarify, SwiftRentals is primarily a platform designed for showcasing my portfolio as a web developer and designer. It is not a real car rental service. Your reservation request, while not applicable in this context, is genuinely appreciated as it allows me to demonstrate the user experience and functionality of the website.</p>
+          <p>Your interest means a lot to me, and I'm here to answer any questions you might have about the website, its features, or any other inquiries related to my portfolio .Please feel free to reach out with any queries, and I'll be more than happy to assist you.</p>
+          <h2>Best regards,</h2>
+          <h1>swiftrentalsofficial@gmail.com</h1>
+        `,
+      };
+      const result = await transport.sendMail(mailoptions);
+    }
   } catch (error) {
     console.log("Enter a valid Email", error.message);
   }
