@@ -3,7 +3,7 @@ const router = express.Router();
 const Reservation = require("../Schema/ReservationSchema");
 const { body, validationResult } = require("express-validator");
 const fetchuser = require("../MiddleWare/fetchuser");
-const { SendMail } = require("../MiddleWare/sendmail");
+
 router.post(
   "/createReservation",
   [
@@ -40,11 +40,6 @@ router.post(
         phonenumber: req.body.phonenumber,
       });
 
-      SendMail(req.body.email, undefined)
-        .then(() => {})
-        .catch((err) => {
-          return res.status(500).send(err.message);
-        });
       return res
         .status(200)
         .send({ msg: "Your reservation has been made check your email" });
