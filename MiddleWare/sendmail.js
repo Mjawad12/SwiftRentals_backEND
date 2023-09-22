@@ -81,6 +81,6 @@ const SendMail = async (clientMail, otp) => {
 };
 
 module.exports = {
-  SendMail: SendMail,
+  // SendMail: SendMail,
   otp: Otpcreator,
 };
