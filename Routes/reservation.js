@@ -20,7 +20,10 @@ router.post(
       return res.status(400).send({ error: error.array() });
     }
     try {
-      const carname = await Reservation.findOne({ carname: req.body.carname });
+      const carname = await Reservation.findOne({
+        carname: req.body.carname,
+        user: req.id,
+      });
       if (carname) {
         return res
           .status(400)
