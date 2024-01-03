@@ -33,7 +33,7 @@ ConnectTodb()
   .then(() => {
     console.log("Connected to Db");
     app.listen(process.env.PORT || 5000, () => {
-      console.log("app launched on port 3000");
+      console.log("app launched on port " + process.env.PORT || "5000");
     });
   })
   .catch((error) => {

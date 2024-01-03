@@ -44,19 +44,11 @@ router.post(
         password: securedPassword,
         email: req.body.email,
         verification: req.body.verification,
+        profileImg: req.body.profileImg,
       });
 
       if (user.verification === "NO") {
-        console.log("entered");
         const otp_no = otp();
-        // SendMail(user.email, otp_no)
-        //   .then(() => {
-        //     console.log("success");
-        //   })
-        //   .catch((error) => {
-        //     console.log(error.message);
-        //   });
-
         return res.status(200).send({ otp: otp_no });
       } else {
         const data = {
